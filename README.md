@@ -12,9 +12,9 @@ I tested QString and QList only, hoping that the rest of the scripts will be com
 
 # Installation #
 
-Clone this repo somewhere, e.g. ~/qtlldb. Then add the following lines to your ~/.lldbinit (create one if does not exist):
+Clone this repo somewhere, e.g. ~/.qtlldb. Then add the following lines to your ~/.lldbinit (create one if does not exist):
 
 ```
-command script import ~/qtlldb/QtFormatters.py
-command source ~/qtlldb/QtFormatters.lldb
+command script import ~/.qtlldb/QtFormatters.py
+command source ~/.qtlldb/QtFormatters.lldb
 ```

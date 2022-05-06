@@ -14,7 +14,10 @@ def QString_SummaryProvider(valobj, internal_dict):
         V = G[X]
         if V == 0:
           continue
-        strval += unichr(V)
+        try:
+          strval += chr(V)
+        except NameError:
+          strval += unichr(V)
     except Exception as e:
       pass
     strval = strval + '"'
@@ -101,8 +104,7 @@ class QList_SyntheticProvider:
       voidSize = pD.GetChildMemberWithName('array').GetType().GetByteSize()
       return self.valobj.GetChildMemberWithName('p').GetChildMemberWithName('d').GetChildMemberWithName('array').CreateChildAtOffset('[' + str(index) + ']', pBegin + index * voidSize, type)
     except:
-      print "boned getchild"
-    return None
+      return None
 
 class QPointer_SyntheticProvider:
   def __init__(self, valobj, internal_dict):
@@ -133,5 +135,4 @@ class QPointer_SyntheticProvider:
       type = self.valobj.GetType().GetTemplateArgumentType(0)
       return self.valobj.GetChildMemberWithName('wp').GetChildMemberWithName('value').CreateChildAtOffset('value', 0, type)
     except:
-      print "boned getchild"
       return None
